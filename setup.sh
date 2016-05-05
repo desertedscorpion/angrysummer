@@ -1,4 +1,5 @@
 #!/bin/bash
 
-create-job /usr/local/lib/job.xml &&
+credentials /usr/local/lib/credentials.xml &&
+    create-job /usr/local/lib/job.xml &&
     true
