@@ -11,6 +11,7 @@ docker build -t ninthgrimmercury/angrysummer . &&
 	    exit 64 &&
 	    true
     fi &&
+    sleep 5m &&
     docker rm $(docker stop $(docker ps -a -q --filter ancestor=freakygamma/angrysummer --format="{{.ID}}")) &&
     docker rmi --force freakygamma/angrysummer &&
     docker rmi --force ninthgrimmercury/angrysummer &&
