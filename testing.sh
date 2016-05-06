@@ -11,7 +11,7 @@ docker build -t ninthgrimmercury/angrysummer . &&
 	    exit 64 &&
 	    true
     fi &&
-    docker run --interactive --tty --privileged --detach --volume /sys/fs/cgroup:/sys/fs/cgroup:ro --volume ${PWD}/test/src:/usr/local/src:ro --volume ${HOME}/.private:/var/private -p 127.88.179.49:29141:8080 freakygamma/solidpostal &&
+    docker run --interactive --tty --privileged --detach --volume /sys/fs/cgroup:/sys/fs/cgroup:ro --volume ${PWD}/test/src:/usr/local/src:ro --volume ${HOME}/.private:/var/private -p 127.88.179.49:29141:8080 freakygamma/angrysummer &&
     sleep 2m &&
     if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.88.179.49:29141 | head --lines 1 | tr -d "[:cntrl:]") ]]
     then
