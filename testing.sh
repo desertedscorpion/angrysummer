@@ -11,7 +11,17 @@ docker build -t ninthgrimmercury/angrysummer . &&
 	    exit 64 &&
 	    true
     fi &&
-    sleep 5m &&
+    docker run --interactive --tty --privileged --detach --volume /sys/fs/cgroup:/sys/fs/cgroup:ro --volume ${PWD}/test/src:/usr/local/src:ro --volume ${HOME}/.private:/var/private -p 127.88.179.49:29141:8080 freakygamma/solidpostal &&
+    sleep 2m &&
+    if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.88.179.49:29141 | head --lines 1 | tr -d "[:cntrl:]") ]]
+    then
+	echo the web page is up &&
+	    true
+    else
+	echo the web page is down &&
+	    exit 65 &&
+	    true
+    fi &&
     docker rm $(docker stop $(docker ps -a -q --filter ancestor=freakygamma/angrysummer --format="{{.ID}}")) &&
     docker rmi --force freakygamma/angrysummer &&
     docker rmi --force ninthgrimmercury/angrysummer &&
