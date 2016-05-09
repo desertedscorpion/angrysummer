@@ -22,8 +22,7 @@ docker build -t ninthgrimmercury/angrysummer . &&
 	    exit 65 &&
 	    true
     fi &&
-    if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.88.179.49:29141/credential-store/domain/_/credential/79ad7607-ef6e-4e5f-a139-e633aded192b/ | head --lines 1 | tr -d "[:cntrl
-:]") ]]
+    if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.88.179.49:29141/credential-store/domain/_/credential/79ad7607-ef6e-4e5f-a139-e633aded192b/ | head --lines 1 | tr -d "[:cntrl:]") ]]
     then
 	echo the credentials were added &&
 	    true
