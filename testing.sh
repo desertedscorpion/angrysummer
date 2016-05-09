@@ -22,6 +22,16 @@ docker build -t ninthgrimmercury/angrysummer . &&
 	    exit 65 &&
 	    true
     fi &&
+    if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.0.0.1:28860/credential-store/domain/_/credential/79ad7607-ef6e-4e5f-a139-e633aded192b/ | head --lines 1 | tr -d "[:cntrl
+:]") ]]
+    then
+	echo the credentials were added &&
+	    true
+    else
+	echo the credentials were not added &&
+	    exit 66 &&
+	    true
+    fi &&
     docker rm $(docker stop $(docker ps -a -q --filter ancestor=freakygamma/angrysummer --format="{{.ID}}")) &&
     docker rmi --force freakygamma/angrysummer &&
     docker rmi --force ninthgrimmercury/angrysummer &&
