@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
   <description></description>
@@ -31,8 +32,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>groups
-./testing.sh</command>
+      <command>./testing.sh</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
