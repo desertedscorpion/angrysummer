@@ -4,7 +4,7 @@ docker build -t ninthgrimmercury/angrysummer . &&
     docker build -t freakygamma/angrysummer test &&
     if docker run --interactive --tty freakygamma/angrysummer dnf update --assumeyes | grep "^Last metadata expiration check: 0:0"
     then
-	echo dnf was updated within the ten minutes &&
+	echo dnf was updated within the last ten minutes &&
 	    true
     else
 	echo dnf was not updated within the last ten minutes &&
