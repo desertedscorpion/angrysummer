@@ -31,7 +31,7 @@ docker build -t ninthgrimmercury/angrysummer . &&
 	    exit 66 &&
 	    true
     fi &&
-    if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.88.179.49:29141/computer/slave/ | head --lines 1 | tr -d "[:cntrl:]") ]]
+    if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.88.179.49:29141/computer/dockerhost/ | head --lines 1 | tr -d "[:cntrl:]") ]]
     then
 	echo the slave was added &&
 	    true
