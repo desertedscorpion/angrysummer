@@ -5,4 +5,5 @@ credentials /usr/local/lib/credentials.xml &&
     create-slave /usr/local/lib/dockerhost.xml &&
     dnf install --assumeyes git &&
     install-plugin git &&
+    create-job /usr/local/lib/test-master.xml &&
     true
