@@ -52,7 +52,7 @@ docker build -t ninthgrimmercury/angrysummer . &&
 	    true
     fi &&
     sleep 1m &&
-    if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.0.0.1:28860/job/test-master/ws/data.txt/*view*/ | head --lines 1 | tr -d "[:cntrl:]") ]]
+    if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.88.179.49:29141/job/test-master/ws/data.txt/*view*/ | head --lines 1 | tr -d "[:cntrl:]") ]]
     then
 	echo the job built &&
 	    true
