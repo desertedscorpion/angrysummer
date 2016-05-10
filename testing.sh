@@ -41,6 +41,7 @@ docker build -t ninthgrimmercury/angrysummer . &&
 	    exit 67 &&
 	    true
     fi &&
+    sleep 5m &&
     if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.88.179.49:29141/test-master/job/ | head --lines 1 | tr -d "[:cntrl:]") ]]
     then
 	echo the job was added &&
