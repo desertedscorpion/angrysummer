@@ -51,6 +51,16 @@ docker build -t ninthgrimmercury/angrysummer . &&
 	    exit 68 &&
 	    true
     fi &&
+    sleep 1m &&
+    if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.0.0.1:28860/job/test-master/ws/data.txt/*view*/ | head --lines 1 | tr -d "[:cntrl:]") ]]
+    then
+	echo the job built &&
+	    true
+    else
+	echo the job did not build &&
+	    exit 69 &&
+	    true
+    fi &&
     docker rm $(docker stop $(docker ps -a -q --filter ancestor=freakygamma/angrysummer --format="{{.ID}}")) &&
     docker rmi --force freakygamma/angrysummer &&
     docker rmi --force ninthgrimmercury/angrysummer &&
