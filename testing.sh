@@ -44,20 +44,38 @@ docker build -t ninthgrimmercury/angrysummer . &&
     sleep 6m &&
     if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.88.179.49:29141/job/easternmoose/ | head --lines 1 | tr -d "[:cntrl:]") ]]
     then
-	echo the job was added &&
+	echo the easternmoose job was added &&
 	    true
     else
-	echo the job was not added &&
+	echo the easternmoose job was not added &&
+	    exit 68 &&
+	    true
+    fi &&
+    if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.88.179.49:29141/job/needlessbeta/ | head --lines 1 | tr -d "[:cntrl:]") ]]
+    then
+	echo the needlessbeta job was added &&
+	    true
+    else
+	echo the needlessbeta job was not added &&
 	    exit 68 &&
 	    true
     fi &&
     sleep 5m &&
     if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.88.179.49:29141/job/easternmoose/ws/Dockerfile/*view*/ | head --lines 1 | tr -d "[:cntrl:]") ]]
     then
-	echo the job built &&
+	echo the easternmoose job built &&
 	    true
     else
-	echo the job did not build &&
+	echo the easternmoose job did not build &&
+	    exit 69 &&
+	    true
+    fi &&
+    if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.88.179.49:29141/job/needlessbeta/ws/Dockerfile/*view*/ | head --lines 1 | tr -d "[:cntrl:]") ]]
+    then
+	echo the needlessbeta job built &&
+	    true
+    else
+	echo the needlessbeta job did not build &&
 	    exit 69 &&
 	    true
     fi &&
