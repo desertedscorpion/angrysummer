@@ -12,4 +12,8 @@
     <url>git@github.com:desertedscorpion/solidpostal.git</url>
     <cron>H H * * *</cron>
   </project>
+  <project name="angrysummer">
+    <url>git@github.com:desertedscorpion/angrysummer.git</url>
+    <cron>H H * * *</cron>
+  </project>
 </projects>
