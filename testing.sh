@@ -69,35 +69,6 @@ docker build -t ninthgrimmercury/angrysummer . &&
 	    exit 68 &&
 	    true
     fi &&
-    sleep 5m &&
-    if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.88.179.49:29141/job/easternmoose/ws/Dockerfile/*view*/ | head --lines 1 | tr -d "[:cntrl:]") ]]
-    then
-	echo the easternmoose job built &&
-	    true
-    else
-	echo the easternmoose job did not build &&
-	    exit 69 &&
-	    true
-    fi &&
-    if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.88.179.49:29141/job/needlessbeta/ws/Dockerfile/*view*/ | head --lines 1 | tr -d "[:cntrl:]") ]]
-    then
-	echo the needlessbeta job built &&
-	    true
-    else
-	echo the needlessbeta job did not build &&
-	    exit 69 &&
-	    true
-    fi &&
-    sleep 20m &&
-    if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.88.179.49:29141/job/solidpostal/ws/Dockerfile/*view*/ | head --lines 1 | tr -d "[:cntrl:]") ]]
-    then
-	echo the solidpostal job built &&
-	    true
-    else
-	echo the solidpostal job did not build &&
-	    exit 69 &&
-	    true
-    fi &&
     docker rm $(docker stop $(docker ps -a -q --filter ancestor=freakygamma/angrysummer --format="{{.ID}}")) &&
     docker rmi --force freakygamma/angrysummer &&
     docker rmi --force ninthgrimmercury/angrysummer &&
