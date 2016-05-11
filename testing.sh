@@ -69,6 +69,33 @@ docker build -t ninthgrimmercury/angrysummer . &&
 	    exit 68 &&
 	    true
     fi &&
+    if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.88.179.49:29141/job/side-easternmoose/ | head --lines 1 | tr -d "[:cntrl:]") ]]
+    then
+	echo the easternmoose side job was added &&
+	    true
+    else
+	echo the easternmoose side job was not added &&
+	    exit 68 &&
+	    true
+    fi &&
+    if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.88.179.49:29141/job/side-needlessbeta/ | head --lines 1 | tr -d "[:cntrl:]") ]]
+    then
+	echo the needlessbeta side job was added &&
+	    true
+    else
+	echo the needlessbeta side job was not added &&
+	    exit 69 &&
+	    true
+    fi &&
+    if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.88.179.49:29141/job/side-solidpostal/ | head --lines 1 | tr -d "[:cntrl:]") ]]
+    then
+	echo the solidpostal side job was added &&
+	    true
+    else
+	echo the solidpostal side job was not added &&
+	    exit 69 &&
+	    true
+    fi &&
     docker rm $(docker stop $(docker ps -a -q --filter ancestor=freakygamma/angrysummer --format="{{.ID}}")) &&
     docker rmi --force freakygamma/angrysummer &&
     docker rmi --force ninthgrimmercury/angrysummer &&
