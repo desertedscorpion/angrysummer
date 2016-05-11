@@ -88,6 +88,7 @@ docker build -t ninthgrimmercury/angrysummer . &&
 	    exit 69 &&
 	    true
     fi &&
+    sleep 20m &&
     if [[ "HTTP/1.1 200 OK" == $(curl --head http://127.88.179.49:29141/job/solidpostal/ws/Dockerfile/*view*/ | head --lines 1 | tr -d "[:cntrl:]") ]]
     then
 	echo the solidpostal job built &&
