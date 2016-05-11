@@ -2,5 +2,10 @@
 <projects>
   <project name="easternmoose">
     <url>git@github.com:desertedscorpion/easternmoose.git</url>
+    <cron>H H * * *</cron>
+  </project>
+  <project name="needlessbeta">
+    <url>git@github.com:desertedscorpion/needlessbeta.git</url>
+    <cron>H H * * *</cron>
   </project>
 </projects>

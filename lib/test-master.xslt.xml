@@ -1,81 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:exsl="http://exslt.org/common" extension-element-prefixes="exsl">
+  <xsl:param name="root"/>
   <xsl:output method="xml" indent="yes" encoding="UTF-8"/>
   <xsl:template match="projects">
     <xsl:apply-templates select="project"/>
   </xsl:template>
   <xsl:template match="project">
-    <xsl:element name="project">
-      <xsl:element name="actions"/>
-      <xsl:element name="description"/>
-      <xsl:element name="keepDependencies">
-	<xsl:text>false</xsl:text>
-      </xsl:element>
-      <xsl:element name="scm">
-	<xsl:attribute name="class">
-	  <xsl:text>hudson.plugins.git.GitSCM</xsl:text>
-	</xsl:attribute>
-	<xsl:attribute name="plugin">
-	  <xsl:text>git@2.4.4</xsl:text>
-	</xsl:attribute>
-	<xsl:element name="configVersion">
-	  <xsl:text>2</xsl:text>
+    <xsl:variable name="file">
+      <xsl:value-of select="$root"/>
+      <xsl:text>/</xsl:text>
+      <xsl:value-of select="@name"/>
+      <xsl:text>.xml</xsl:text>
+    </xsl:variable>
+    <xsl:variable name="url">
+      <xsl:value-of select="/url"/>
+    </xsl:variable>
+    <exsl:document href="{$file}" method="xml" indent="yes" encoding="UTF-8">
+      <xsl:element name="project">
+	<xsl:element name="actions"/>
+	<xsl:element name="description"/>
+	<xsl:element name="keepDependencies">
+	  <xsl:text>false</xsl:text>
 	</xsl:element>
-	<xsl:element name="userRemoteConfigs">
-	  <xsl:element name="url">
-	    <xsl:value-of select="/url"/>
+	<xsl:element name="scm">
+	  <xsl:attribute name="class">
+	    <xsl:text>hudson.plugins.git.GitSCM</xsl:text>
+	  </xsl:attribute>
+	  <xsl:attribute name="plugin">
+	    <xsl:text>git@2.4.4</xsl:text>
+	  </xsl:attribute>
+	  <xsl:element name="configVersion">
+	    <xsl:text>2</xsl:text>
 	  </xsl:element>
-	  <xsl:element name="credentialsId">
-	    <xsl:text>79ad7607-ef6e-4e5f-a139-e633aded192b</xsl:text>
+	  <xsl:element name="userRemoteConfigs">
+	    <xsl:element name="url" >
+	      <xsl:value-of select="url"/>
+	    </xsl:element>
+	    <xsl:element name="credentialsId">
+	      <xsl:text>79ad7607-ef6e-4e5f-a139-e633aded192b</xsl:text>
+	    </xsl:element>
+	  </xsl:element>
+	  <xsl:element name="branches">
+	    <xsl:element name="hudson.plugins.git.BranchSpec">
+	      <xsl:element name="name">
+		<xsl:text>master</xsl:text>
+	      </xsl:element>
+	    </xsl:element>
+	  </xsl:element>
+	  <xsl:element name="doGenerateSubmoduleConfigurations">
+	    <xsl:text>false</xsl:text>
+	  </xsl:element>
+	  <xsl:element name="submoduleCfg">
+	    <xsl:attribute name="class">
+	      <xsl:text>list</xsl:text>
+	    </xsl:attribute>
+	  </xsl:element>
+	  <xsl:element name="extensions">
+	    <xsl:element name="hudson.plugins.git.extensions.impl.CleanCheckout"/>
 	  </xsl:element>
 	</xsl:element>
-	<xsl:element name="branches">
-	  <xsl:element name="hudson.plugins.git.BranchSpec">
-	    <xsl:element name="name">
-	      <xsl:text>master</xsl:text>
+	<xsl:element name="assignedNode">
+	  <xsl:text>dockerhost</xsl:text>
+	</xsl:element>
+	<xsl:element name="canRoam">
+	  <xsl:text>false</xsl:text>
+	</xsl:element>
+	<xsl:element name="disabled">
+	  <xsl:text>false</xsl:text>
+	</xsl:element>
+	<xsl:element name="blockBuildWhenDownstreamBuilding">
+	  <xsl:text>false</xsl:text>
+	</xsl:element>
+	<xsl:element name="blockBuildWhenUpstreamBuilding">
+	  <xsl:text>false</xsl:text>
+	</xsl:element>
+	<xsl:element name="triggers">
+	  <xsl:element name="hudson.triggers.TimerTrigger">
+	    <xsl:element name="spec">
+	      <xsl:value-of select="cron"/>
 	    </xsl:element>
 	  </xsl:element>
 	</xsl:element>
-	<xsl:element name="doGenerateSubmoduleConfigurations">
+	<xsl:element name="concurrentBuild">
 	  <xsl:text>false</xsl:text>
 	</xsl:element>
-	<xsl:element name="submoduleCfg">
-	  <xsl:attribute name="class">
-	    <xsl:text>list</xsl:text>
-	  </xsl:attribute>
-	</xsl:element>
-	<xsl:element name="extensions">
-	  <xsl:element name="hudson.plugins.git.extensions.impl.CleanCheckout"/>
-	</xsl:element>
-      </xsl:element>
-      <xsl:element name="assignedNode">
-	<xsl:text>dockerhost</xsl:text>
-      </xsl:element>
-      <xsl:element name="canRoam">
-	<xsl:text>false</xsl:text>
-      </xsl:element>
-      <xsl:element name="disabled">
-	<xsl:text>false</xsl:text>
-      </xsl:element>
-      <xsl:element name="blockBuildWhenDownstreamBuilding">
-	<xsl:text>false</xsl:text>
-      </xsl:element>
-      <xsl:element name="blockBuildWhenUpstreamBuilding">
-	<xsl:text>false</xsl:text>
-      </xsl:element>
-      <xsl:element name="triggers"/>
-      <xsl:element name="concurrentBuild">
-	<xsl:text>false</xsl:text>
-      </xsl:element>
-      <xsl:element name="builders">
-	<xsl:element name="hudson.tasks.Shell">
-	  <xsl:element name="command">
-	    <xsl:text>./testing.sh</xsl:text>
+	<xsl:element name="builders">
+	  <xsl:element name="hudson.tasks.Shell">
+	    <xsl:element name="command">
+	      <xsl:text>./testing.sh</xsl:text>
+	    </xsl:element>
 	  </xsl:element>
 	</xsl:element>
+	<xsl:element name="publishers"/>
+	<xsl:element name="buildWrappers"/>
       </xsl:element>
-      <xsl:element name="publishers"/>
-      <xsl:element name="buildWrappers"/>
-    </xsl:element>
+    </exsl:document>
   </xsl:template>
 </xsl:stylesheet>
