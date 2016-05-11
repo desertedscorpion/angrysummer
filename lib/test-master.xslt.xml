@@ -33,11 +33,13 @@
 	    <xsl:text>2</xsl:text>
 	  </xsl:element>
 	  <xsl:element name="userRemoteConfigs">
-	    <xsl:element name="url" >
-	      <xsl:value-of select="url"/>
-	    </xsl:element>
-	    <xsl:element name="credentialsId">
-	      <xsl:text>79ad7607-ef6e-4e5f-a139-e633aded192b</xsl:text>
+	    <xsl:element name="hudson.plugins.git.UserRemoteConfig">
+	      <xsl:element name="url" >
+		<xsl:value-of select="url"/>
+	      </xsl:element>
+	      <xsl:element name="credentialsId">
+		<xsl:text>79ad7607-ef6e-4e5f-a139-e633aded192b</xsl:text>
+	      </xsl:element>
 	    </xsl:element>
 	  </xsl:element>
 	  <xsl:element name="branches">
