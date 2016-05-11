@@ -1,4 +1,5 @@
 #!/bin/bash
 
-build test-master &&
+build easternmoose &&
+    build needlessbeta &&
     true
